@@ -10,25 +10,25 @@ if (!isset($_GET['key']) || $config['key'] !== $key = (string)$_GET['key']) {
 
 header('Content-Type: text/plain; charset=utf-8');
 
-isset($_FILES['war']['error']) && !is_array($_FILES['war']['error']) || die("Invalid parameters.");
+isset($_FILES['war']['error']) && !is_array($_FILES['war']['error']) || die("Invalid parameters.\n");
 switch ($_FILES['war']['error']) {
     case UPLOAD_ERR_OK:
         break;
     case UPLOAD_ERR_NO_FILE:
-        die("No file sent.");
+        die("No file sent.\n");
     case UPLOAD_ERR_INI_SIZE:
     case UPLOAD_ERR_FORM_SIZE:
-        die("Exceeded filesize limit.");
+        die("Exceeded filesize limit.\n");
     default:
-        die("Weird error.");
+        die("Weird error.\n");
 }
 move_uploaded_file($_FILES['war']['tmp_name'],
         $f = sprintf('%s/wars/aurora_%s.war', ROOT_DIR, sha1_file($_FILES['war']['tmp_name'])))
-        || die("Failed to move uploaded file.");
+        || die("Failed to move uploaded file.\n");
 
 passthru(sprintf('bash %s %s %s 2>&1',
         escapeshellarg(ROOT_DIR . '/unpackr.sh'),
         escapeshellarg($f),
         escapeshellarg($config['target'])));
 
-die("Great success!");
+die("Great success!\n");
