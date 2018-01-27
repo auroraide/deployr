@@ -1,0 +1,4 @@
+{
+    "key": "your secret deploy key",
+    "target": "/path/to/webapp"
+}
