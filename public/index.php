@@ -22,8 +22,8 @@ switch ($_FILES['war']['error']) {
     default:
         die("Weird error.");
 }
-!move_uploaded_file($_FILES['upfile']['tmp_name'],
-        $f = sprintf('%s/wars/aurora_%s.war', ROOT_DIR, sha1_file($_FILES['upfile']['tmp_name'])))
+!move_uploaded_file($_FILES['war']['tmp_name'],
+        $f = sprintf('%s/wars/aurora_%s.war', ROOT_DIR, sha1_file($_FILES['war']['tmp_name'])))
         || die("Failed to move uploaded file.");
 
 exec(sprintf('bash %s %s %s &>>%s',
